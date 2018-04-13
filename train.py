@@ -13,10 +13,10 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential, Model 
 from keras import applications
 
-categories=29
-train_data_dir="dataset_1"
-img_width=200
-img_height=200
+categories=36
+train_data_dir="dataset"
+img_width=386
+img_height=226
 
 
 inp=Input(shape=(img_width,img_height,3))#can try with conv layers before inception layer or resized version of same image
