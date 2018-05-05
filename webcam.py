@@ -16,6 +16,8 @@ consecutive = 0
 sequence = ''
 model = load_model('model.hdf5')
 counter = 1
+current_state = 5
+current_value = -1
 while True:
     ret, img = cap.read()
     img = cv2.flip(img, 1)
@@ -27,7 +29,16 @@ while True:
             img1 = cv2.resize(img_cropped, (img_height, img_width))
             img1 = np.expand_dims(img1, axis=0)
             x = model.predict_classes(img1)[0]
-            print(x)
+	    if current_value == x:
+                if current_state == 5:
+                    print(x)
+                    current_value = -1
+                    current_state = 1
+                else:
+                    current_state = current_state + 1
+            else:
+                current_state = 1
+                current_value = x
             # c += 1
             # image_data = cv2.imencode('.jpg', img_cropped)[1].tostring()
             
